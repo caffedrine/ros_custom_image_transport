@@ -33,5 +33,9 @@
 
 bin/
 build/
-
+src/custom_img_transport
 msg_gen/
+*.*~
+*.*.user
+*.user
+*.~

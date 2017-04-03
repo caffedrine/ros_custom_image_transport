@@ -25,6 +25,7 @@ int main(int argc, char** argv)
     if(!(video_sourceCmd >> video_source)) return 1;
 
     cv::VideoCapture cap(video_source);
+
     // Check if video device can be opened with the given index
     if(!cap.isOpened()) return 1;
     cv::Mat frame;
@@ -33,7 +34,7 @@ int main(int argc, char** argv)
     custom_img_transport::mesaj msg;
     unsigned int counter = 0;
 
-    ros::Rate loop_rate(20);  //Vrai mai multe cadre pe secunda? Modifica asta :)
+    ros::Rate loop_rate(20);  //Vrei mai multe cadre pe secunda? Modifica asta :)
     while (n.ok())
     {
         ///////////////////////////////////////////////////////
@@ -52,7 +53,7 @@ int main(int argc, char** argv)
         // Check if grabbed frame is actually full with some content
         if(!frame.empty())
         {
-            cv_bridge::CvImage img_bridge = cv_bridge::CvImage(header, sensor_msgs::image_encodings::RGB8, frame);
+            cv_bridge::CvImage img_bridge = cv_bridge::CvImage(header, sensor_msgs::image_encodings::BGR8, frame);
             img_bridge.toImageMsg(msg.image);
 
             //Send a message before
